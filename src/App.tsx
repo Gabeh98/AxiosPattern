@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import call from './service/cliente';
 
 function App() {
+
+  const [cliente,setCliente] = useState();
+  console.log(cliente)
+  useEffect(()=>{
+    call.get().then(response=>{
+      const data = response.data;
+      setCliente(data);
+    })
+    call.getById(1).then((response)=>{
+      const data = response.data;
+      console.log(data)
+    })
+  }
+  ,[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Axios Pattern</h1>
     </div>
   );
 }
