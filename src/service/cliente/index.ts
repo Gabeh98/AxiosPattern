@@ -1,3 +1,3 @@
-import {cliente} from './calls';
+import { cliente } from './calls';
 
 export default cliente;
